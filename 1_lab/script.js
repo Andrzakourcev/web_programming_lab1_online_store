@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = document.createElement('li');
         li.innerHTML = `
         <article>
+            <img src="${product.image}" alt="${product.title}">
             <h3>${product.title}</h3>
             <p class="price">${product.price} руб.</p>
             <button class="add-btn" data-id="${product.id}" data-title="${product.title}" data-price="${product.price}">
