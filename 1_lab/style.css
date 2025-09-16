@@ -1,0 +1,14 @@
+body {
+  font-family: "Bradley Hand", cursive;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #1a1616;
+  color: #fff;
+  padding: 3px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
