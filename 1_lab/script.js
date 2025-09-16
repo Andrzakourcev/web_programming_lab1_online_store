@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     let cart = {};
-    
+
     // Открытие/закрытие корзины
     const cartModal = document.getElementById("cartModal");
     document.getElementById("cartBtn").onclick = () => { showCart(); cartModal.classList.remove("hidden"); };
@@ -59,7 +59,67 @@ document.addEventListener('DOMContentLoaded', () => {
         cartItems.appendChild(li);
     }
     document.getElementById("cartTotal").textContent = total;
-}
+    }
+    // Загрузка корзины из localStorage
+    if (localStorage.getItem("cart")) {
+    cart = JSON.parse(localStorage.getItem("cart"));
+    updateCartCount();
+    }
+
+    // Делегирование событий на кнопки "Добавить в корзину"
+    productsContainer.addEventListener("click", e => {
+    if (e.target.classList.contains("add-btn")) {
+        const id = e.target.dataset.id;
+        const title = e.target.dataset.title;
+        const price = parseInt(e.target.dataset.price);
+
+        if (cart[id]) {
+        cart[id].qty++;
+        } else {
+        cart[id] = { title, price, qty: 1 };
+        }
+        saveCart();
+        updateCartCount();
+    }
+    });
+
+    // Сохранение в localStorage
+    function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    // Обновление счётчика корзины
+    function updateCartCount() {
+    const count = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById("cartCount").textContent = count;
+    }
+    
+    const cartItems = document.getElementById("cartItems");
+
+    // Удаление
+    cartItems.addEventListener("click", e => {
+    if (e.target.classList.contains("remove-btn")) {
+        const id = e.target.dataset.id;
+        delete cart[id];
+        saveCart();
+        showCart();
+        updateCartCount();
+    }
+    });
+
+    // Изменение количества
+    cartItems.addEventListener("change", e => {
+    if (e.target.classList.contains("qty-input")) {
+        const id = e.target.dataset.id;
+        cart[id].qty = parseInt(e.target.value);
+        if (cart[id].qty <= 0) delete cart[id];
+        saveCart();
+        showCart();
+        updateCartCount();
+    }
+    });
+
+
     } catch (err) {
         console.error('Ошибка в основном блоке script.js:', err);
     }
