@@ -45,26 +45,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartItems = document.getElementById("cartItems");
     cartItems.innerHTML = "";
     let total = 0;
+
     for (let id in cart) {
         const item = cart[id];
         total += item.price * item.qty;
 
         const li = document.createElement("li");
+        li.classList.add("cart-item");
         li.innerHTML = `
-        ${item.title} - ${item.price} руб. × 
-        <input type="number" min="1" value="${item.qty}" data-id="${id}" class="qty-input">
-        = ${item.price * item.qty} руб.
+        <div class="cart-item-info">
+            <span>${item.title}</span>
+            <span>${item.price} руб.</span>
+            <span>&times;</span>
+            <input type="number" min="1" max="10000" value="${item.qty}" data-id="${id}" class="qty-input">
+        </div>
+        <div class="cart-item-sum">Итого: ${item.price * item.qty} руб.</div>
         <button class="remove-btn" data-id="${id}">Удалить</button>
         `;
         cartItems.appendChild(li);
     }
+
     document.getElementById("cartTotal").textContent = total;
     }
-    // Загрузка корзины из localStorage
-    if (localStorage.getItem("cart")) {
-    cart = JSON.parse(localStorage.getItem("cart"));
-    updateCartCount();
-    }
+
 
     // Делегирование событий на кнопки "Добавить в корзину"
     productsContainer.addEventListener("click", e => {
@@ -137,6 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("orderForm").addEventListener("submit", e => {
         e.preventDefault();
+        
+        let totalQty = 0;
+        for (let id in cart) {
+            const qty = parseInt(cart[id].qty);
+            if (!isNaN(qty) && qty > 0) totalQty += qty;
+        }
+
+        if (totalQty === 0) {
+            alert("Корзина пуста, заказ невозможен!");
+            return;
+        }
 
         const form = e.target;
         const firstName = form.firstName.value.trim();

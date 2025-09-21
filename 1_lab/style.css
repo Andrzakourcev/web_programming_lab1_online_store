@@ -82,8 +82,10 @@ main h2 {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  width: 500px;
   max-width: 90%;
+  max-height: 80vh;    
+  overflow-y: auto;  
 }
 
 .close {
@@ -142,3 +144,72 @@ main h2 {
   background: #45a049;   
 }
 
+.btn-danger {
+  background: #5b5a5a;  
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-danger:hover {
+  background: #c62828;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 8px;
+  background: #fafafa;
+  margin: 10px auto;       
+  width: 90%;             
+  max-width: 500px;        
+  box-sizing: border-box;
+}
+
+
+.cart-item-info {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; 
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cart-item-sum {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.qty-input {
+  width: 70px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.remove-btn {
+  align-self: flex-end;   
+  background: #f44336;  
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.remove-btn:hover {
+  background: #d32f2f;
+}
