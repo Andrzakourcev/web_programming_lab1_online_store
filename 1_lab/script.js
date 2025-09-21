@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const phonePattern = /^\+?\d{10,15}$/; 
+        const phonePattern = /^\+?[\d()]{10,15}$/;
         if (!phonePattern.test(phone)) {
             alert("Введите корректный телефон (10–15 цифр, можно с +)");
             return;
