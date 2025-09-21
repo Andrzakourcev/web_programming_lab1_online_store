@@ -52,7 +52,7 @@ main h2 {
 }
 
 .products h3 {
-  margin: 0.5rem 0;
+  margin: 1,5rem 0;
 }
 
 .products img {
@@ -60,6 +60,10 @@ main h2 {
   height: 150px;
   object-fit: cover;
   border-radius: 6px;
+}
+
+.products .price {
+  font-size: 1.2rem; 
 }
 
 /* модальное окно по дефолту скрыто */
