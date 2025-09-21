@@ -111,8 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
     cartItems.addEventListener("change", e => {
     if (e.target.classList.contains("qty-input")) {
         const id = e.target.dataset.id;
-        cart[id].qty = parseInt(e.target.value);
-        if (cart[id].qty <= 0) delete cart[id];
+        let value = parseInt(e.target.value);
+
+    
+        if (isNaN(value)) value = 1;
+
+        // тут ставим ограничение на 10000 товаров, иначе при вводе большого числа у нас NaN будет в сумме
+        if (value < 1) value = 1;
+        if (value > 10000) value = 10000;
+
+        cart[id].qty = value;
+        e.target.value = value; 
+
         saveCart();
         showCart();
         updateCartCount();
