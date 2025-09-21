@@ -105,3 +105,40 @@ main h2 {
 .add-btn:hover {
   background: #45a049;
 }
+
+.order-form {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;              
+}
+
+.order-form label {
+  display: flex;
+  flex-direction: column; 
+  font-weight: bold;
+}
+
+.order-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  margin-top: 10px;
+  background: #4CAF50;   
+  color: white;          
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #45a049;   
+}
+

@@ -29,6 +29,22 @@
     </div>
   </div>
   
+  <!-- Заказ -->
+  <div id="checkoutModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeCheckout" class="close">&times;</span>
+      <h2>Оформление заказа</h2>
+      <form id="orderForm" class="order-form">
+        <label>Имя: <input type="text" name="firstName" required></label>
+        <label>Фамилия: <input type="text" name="lastName" required></label>
+        <label>Адрес: <input type="text" name="address" required></label>
+        <label>Телефон: <input type="tel" name="phone" required></label>
+        <button type="submit" class="btn-primary">Создать заказ</button>
+      </form>
+    </div>
+  </div>
+
+
   <!-- подключаем script с defer чтобы скрипт ждал загрузки DOM -->
   <script src="script.js" defer></script>
 </body>

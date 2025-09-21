@@ -119,6 +119,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     });
 
+    const checkoutModal = document.getElementById("checkoutModal");
+    document.getElementById("checkoutBtn").onclick = () => {
+        checkoutModal.classList.remove("hidden");
+    };
+    document.getElementById("closeCheckout").onclick = () => checkoutModal.classList.add("hidden");
+
+    document.getElementById("orderForm").addEventListener("submit", e => {
+        e.preventDefault();
+        alert("Заказ создан!");
+        cart = {};
+        saveCart();
+        updateCartCount();
+        checkoutModal.classList.add("hidden");
+        cartModal.classList.add("hidden");
+    });
 
     } catch (err) {
         console.error('Ошибка в основном блоке script.js:', err);
