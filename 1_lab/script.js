@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartCount();
     }
     });
-
+    // Заказ
     const checkoutModal = document.getElementById("checkoutModal");
     document.getElementById("checkoutBtn").onclick = () => {
         checkoutModal.classList.remove("hidden");
@@ -127,6 +127,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("orderForm").addEventListener("submit", e => {
         e.preventDefault();
+
+        const form = e.target;
+        const firstName = form.firstName.value.trim();
+        const lastName = form.lastName.value.trim();
+        const address = form.address.value.trim();
+        const phone = form.phone.value.trim();
+
+        // Проверки
+        const namePattern = /^[A-Za-zА-Яа-яЁё]{2,}$/;
+
+        if (!namePattern.test(firstName)) {
+            alert("Имя должно содержать только буквы и минимум 2 символа");
+            return;
+        }
+
+        if (!namePattern.test(lastName)) {
+            alert("Фамилия должна содержать только буквы и минимум 2 символа");
+            return;
+        }
+
+        if (address.length < 5) {
+            alert("Адрес слишком короткий");
+            return;
+        }
+
+        const phonePattern = /^\+?\d{10,15}$/; 
+        if (!phonePattern.test(phone)) {
+            alert("Введите корректный телефон (10–15 цифр, можно с +)");
+            return;
+        }
+
         alert("Заказ создан!");
         cart = {};
         saveCart();
